@@ -1,0 +1,59 @@
+{
+  "name": "md",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:h5-netlify": "vite build --mode netlify",
+    "preview": "pnpm build && vite preview",
+    "release:cli": "node ./bin/release.js",
+    "build:cli": "pnpm build && pnpm shx rm -rf md-cli/dist && pnpm shx rm -rf dist/**/*.map && pnpm shx cp -r dist md-cli/ && cd md-cli && pnpm pack",
+    "lint": "eslint . --fix",
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "simple-git-hooks"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "ali-oss": "^6.20.0",
+    "axios": "^1.7.2",
+    "buffer-from": "^1.1.2",
+    "codemirror": "^5.65.16",
+    "cos-js-sdk-v5": "^1.8.2",
+    "crypto-js": "^4.2.0",
+    "element-plus": "^2.7.6",
+    "form-data": "^4.0.0",
+    "highlight.js": "^11.9.0",
+    "juice": "^10.0.0",
+    "katex": "^0.16.10",
+    "marked": "^4.3.0",
+    "marked-katex-extension": "^4.0.5",
+    "minio": "^8.0.1",
+    "node-fetch": "^3.3.2",
+    "pinia": "^2.1.7",
+    "qiniu-js": "4.0.0-beta.1",
+    "uuid": "^10.0.0",
+    "vue": "^3.4.31"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.21.2",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "cross-env": "^7.0.3",
+    "eslint-plugin-format": "^0.1.2",
+    "less": "^4.2.0",
+    "lint-staged": "^15.2.7",
+    "memfs": "^4.9.3",
+    "prettier": "^2.8.8",
+    "shx": "^0.3.4",
+    "simple-git-hooks": "^2.11.1",
+    "vite": "^5.3.2",
+    "vite-plugin-node-polyfills": "^0.22.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "pnpm lint"
+  }
+}
